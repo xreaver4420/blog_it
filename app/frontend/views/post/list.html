@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% for i in items %}
+                    <div class="post-preview">
+                        <a href="/?m=post&a=view&id={{ i.post_id }}">
+                            <h2 class="post-title">
+                                {{ i.title | redText | raw }}
+                            </h2>
+                            <h3 class="post-subtitle">
+
+                            </h3>
+                        </a>
+                        <p class="post-meta">Posted on {{ i.created_at | date }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+                <!-- Pager -->
+               {{ pager(totalPage, currentPage, '/?m=post&a=list&p={p}') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
